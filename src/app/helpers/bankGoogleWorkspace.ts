@@ -40,7 +40,7 @@ function verifyAll(events) {
 	var verifyErrors = {};
 	var verifyPromises = [];
 	for (let event of events) {
-		if (/*!event.deleted &&*/ event.status === "verifying") {
+		if (!event.deleted && event.status === "verifying") {
 			numVerified++;
 
 			const promise = verify(event);
