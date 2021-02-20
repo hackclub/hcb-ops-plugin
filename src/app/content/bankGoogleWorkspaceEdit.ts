@@ -1,5 +1,5 @@
 import axios from "axios";
-import { getKey } from "./g-verify-auth";
+import { getKey } from "../helpers/g-verify-auth";
 
 async function bankGoogleWorkspaceEdit() {
 	processDomain();

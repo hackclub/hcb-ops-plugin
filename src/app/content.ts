@@ -1,5 +1,7 @@
-import bankGoogleWorkspace from "./helpers/bankGoogleWorkspace";
-import bankGoogleWorkspaceEdit from "./helpers/bankGoogleWorkspaceEdit";
+import bankGoogleWorkspace from "./content/bankGoogleWorkspace";
+import bankGoogleWorkspaceEdit from "./content/bankGoogleWorkspaceEdit";
+import svbBillPayAddIndivHaveBank from "./content/svbBillPayAddIndivHaveBank";
+import svbBillPayAddPayeeActivationCode from "./content/svbBillPayAddPayeeActivationCode";
 
 chrome.runtime.sendMessage({}, (response) => {
 	var checkReady = setInterval(() => {
@@ -16,6 +18,16 @@ chrome.runtime.sendMessage({}, (response) => {
 				{
 					regex: "https://bank.hackclub.com/.*/g_suites/.*/edit",
 					func: bankGoogleWorkspaceEdit,
+				},
+				{
+					regex:
+						"https://www.businessbillpay-e.com/V2/Payees/AddIndividual.aspx*",
+					func: svbBillPayAddIndivHaveBank,
+				},
+				{
+					regex:
+						"https://www.businessbillpay-e.com/V2/Payees/ActivationCode.aspx*",
+					func: svbBillPayAddPayeeActivationCode,
 				},
 			];
 
