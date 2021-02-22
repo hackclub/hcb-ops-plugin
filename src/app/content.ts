@@ -42,7 +42,6 @@ chrome.runtime.sendMessage({}, (response) => {
 			var matchesSpecificContent = false;
 			for (let item of matches) {
 				if (item.regex instanceof RegExp) {
-					console.log(item.regex, url.match(item.regex));
 					if (url.match(item.regex)) {
 						matchesSpecificContent = true;
 						console.log("Hack Club Bank Ops Plugin is running on this page!");
