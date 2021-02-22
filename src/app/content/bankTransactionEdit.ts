@@ -1,6 +1,7 @@
 function bankTransactionEdit() {
 	const originalName = getOriginalName();
 
+	quickAssignButtons();
 	expensifyReport(originalName);
 }
 
@@ -8,6 +9,59 @@ function getOriginalName(): String {
 	return (<HTMLPreElement>(
 		document.querySelector(".container > pre.bg-smoke.mt0")
 	)).innerText;
+}
+
+function quickAssignButtons() {
+	const options = [
+		{
+			name: "HQ",
+			eventId: 183,
+		},
+		{
+			name: "Bank",
+			eventId: 636,
+		},
+		{
+			name: "Not event-related",
+			eventId: null,
+		},
+	];
+
+	// inject reuseable assign script
+	var scriptInject = document.createElement("script");
+	scriptInject.type = "text/javascript";
+	scriptInject.innerText = `
+		function assign(event){
+			if(event !== null) {
+				document.querySelector("#transaction_is_event_related").checked = true;
+				document.querySelector("#transaction_fee_relationship_attributes_event_id > option[value='" + event + "']").selected = true;
+			} else {
+				document.querySelector("#transaction_is_event_related").checked = false;
+				document.querySelector("#transaction_fee_relationship_attributes_event_id > option").selected = true;
+			}
+		}
+	`;
+	document.head.appendChild(scriptInject);
+
+	// build injected buttons
+	var content = `
+	<div class="hcb-plugin-tools mt3">
+		<div class="btn-group center">`;
+	options.forEach((option) => {
+		content += `
+			<span class="btn bg-accent"
+				onClick="assign(${option.eventId})"
+			>${option.name}</span>
+		`;
+	});
+	content += `</div></div>`;
+
+	// inject the buttons
+	var displayElement = document.createElement("div");
+	displayElement.innerHTML = content;
+
+	const container = document.querySelector(".container > h1").parentElement;
+	container.appendChild(displayElement.firstElementChild);
 }
 
 function expensifyReport(originalName: String) {
