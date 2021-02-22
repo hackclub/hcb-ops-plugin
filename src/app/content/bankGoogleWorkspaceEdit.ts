@@ -33,7 +33,7 @@ async function displayToken(domainKey) {
 		<h4>Verification Token</h4>
 		<pre id="generatedDomainKey" onclick="
 			(function() {
-				navigator.clipboard.writeText('${domainKey}')
+				navigator.clipboard.writeText('${domainKey}');
 			})();
 			"
 			style="cursor: pointer"

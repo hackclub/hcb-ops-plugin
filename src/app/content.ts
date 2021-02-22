@@ -1,3 +1,4 @@
+import bankEventCopyName from "./content/bankEventCopyName";
 import bankGoogleWorkspace from "./content/bankGoogleWorkspace";
 import bankGoogleWorkspaceEdit from "./content/bankGoogleWorkspaceEdit";
 import bankTransactionEdit from "./content/bankTransactionEdit";
@@ -10,43 +11,72 @@ chrome.runtime.sendMessage({}, (response) => {
 			clearInterval(checkReady);
 
 			// match path to content function
-			const url = window.location.href;
 			const matches = [
 				{
-					regex: "https://bank.hackclub.com/g_suites",
+					regex: /https:\/\/bank\.hackclub\.com\/g_suites/,
 					func: bankGoogleWorkspace,
 				},
 				{
-					regex: "https://bank.hackclub.com/.*/g_suites/.*/edit",
+					regex: /https:\/\/bank\.hackclub\.com\/.*\/g_suites\/.*\/edit/,
 					func: bankGoogleWorkspaceEdit,
 				},
 				{
-					regex:
-						"https://www.businessbillpay-e.com/V2/Payees/AddIndividual.aspx*",
+					regex: /https:\/\/www\.businessbillpay-e\.com\/V2\/Payees\/AddIndividual\.aspx.*/,
 					func: svbBillPayAddIndivHaveBank,
 				},
 				{
-					regex:
-						"https://www.businessbillpay-e.com/V2/Payees/ActivationCode.aspx*",
+					regex: /https:\/\/www\.businessbillpay-e\.com\/V2\/Payees\/ActivationCode\.aspx.*/,
 					func: svbBillPayAddPayeeActivationCode,
 				},
 				{
-					regex: "https://bank.hackclub.com/transactions/.*/edit",
+					regex: /https:\/\/bank\.hackclub\.com\/transactions\/.*\/edit/,
 					func: bankTransactionEdit,
+				},
+				{
+					regex: /https:\/\/bank\.hackclub\.com\/.*/,
+					func: bankEventCopyName,
 				},
 			];
 
+			const url = window.location.href;
 			var matchesSpecificContent = false;
 			for (let item of matches) {
-				if (url.match(item.regex)) {
-					matchesSpecificContent = true;
-					console.log("Hack Club Bank Ops Plugin is running on this page!");
+				if (item.regex instanceof RegExp) {
+					console.log(item.regex, url.match(item.regex));
+					if (url.match(item.regex)) {
+						matchesSpecificContent = true;
+						console.log("Hack Club Bank Ops Plugin is running on this page!");
 
-					// inject common css/scripts into page
-					injectCommon();
+						// inject common css/scripts into page
+						injectCommon();
 
-					// run content specific function
-					item.func();
+						// run content specific function
+						item.func();
+					}
+				} else if (Array.isArray(item.regex)) {
+					var matched = false;
+					interface matchObj {
+						regex: RegExp;
+						func: Function;
+					}
+					(<Array<matchObj>>item.regex).forEach((r) => {
+						if (url.match(r.regex)) {
+							// don't run same function multiple times per page
+							if (matched) {
+								return;
+							}
+							matchesSpecificContent = true;
+							console.log("Hack Club Bank Ops Plugin is running on this page!");
+
+							// inject common css/scripts into page
+							injectCommon();
+
+							// run content specific function
+							item.func();
+
+							matched = true;
+						}
+					});
 				}
 			}
 			if (!matchesSpecificContent) {
