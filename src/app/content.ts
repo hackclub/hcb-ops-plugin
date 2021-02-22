@@ -1,5 +1,6 @@
 import bankGoogleWorkspace from "./content/bankGoogleWorkspace";
 import bankGoogleWorkspaceEdit from "./content/bankGoogleWorkspaceEdit";
+import bankTransactionEdit from "./content/bankTransactionEdit";
 import svbBillPayAddIndivHaveBank from "./content/svbBillPayAddIndivHaveBank";
 import svbBillPayAddPayeeActivationCode from "./content/svbBillPayAddPayeeActivationCode";
 
@@ -28,6 +29,10 @@ chrome.runtime.sendMessage({}, (response) => {
 					regex:
 						"https://www.businessbillpay-e.com/V2/Payees/ActivationCode.aspx*",
 					func: svbBillPayAddPayeeActivationCode,
+				},
+				{
+					regex: "https://bank.hackclub.com/transactions/.*/edit",
+					func: bankTransactionEdit,
 				},
 			];
 
