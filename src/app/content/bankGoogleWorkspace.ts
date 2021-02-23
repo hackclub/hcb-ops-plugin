@@ -147,8 +147,10 @@ function setRowStatus(event, status, message = undefined) {
 			break;
 		case "verified":
 			statusDisplayText += "SUCCESSFUL";
+			break;
 		case "failed":
 			statusDisplayText += "FAILED";
+			break;
 	}
 	message && (statusDisplayText += ` (${message})`);
 
