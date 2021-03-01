@@ -16,7 +16,7 @@ function checkPath() {
 				// match path to content function
 				const matches = [
 					{
-						regex: /https:\/\/bank\.hackclub\.com\/g_suites/,
+						regex: /https:\/\/bank\.hackclub\.com\/g_suites$/,
 						func: bankGoogleWorkspace,
 					},
 					{
@@ -56,6 +56,7 @@ function checkPath() {
 						if (url.match(item.regex)) {
 							matchesSpecificContent = true;
 							console.log("Hack Club Bank Ops Plugin is running on this page!");
+							console.log("Running function:", item.func.name + "()");
 
 							// inject common css/scripts into page
 							injectCommon();
