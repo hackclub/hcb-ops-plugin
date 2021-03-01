@@ -63,7 +63,6 @@ function verifyAll(events) {
 
 	Promise.all(verifyPromises).catch(() => {
 		Object.keys(verifyErrors).forEach((err) => {
-			console.log("sdfsdf");
 			switch (err) {
 				case "401":
 					alert(

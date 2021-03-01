@@ -1,7 +1,9 @@
 import bankEventCopyName from "./content/bankEventCopyName";
 import bankGoogleWorkspace from "./content/bankGoogleWorkspace";
 import bankGoogleWorkspaceEdit from "./content/bankGoogleWorkspaceEdit";
+import bankProjectSearch from "./content/bankProjectSearch";
 import bankTransactionEdit from "./content/bankTransactionEdit";
+import expensifyReport from "./content/expensifyReport";
 import svbBillPayAddIndivHaveBank from "./content/svbBillPayAddIndivHaveBank";
 import svbBillPayAddPayeeActivationCode from "./content/svbBillPayAddPayeeActivationCode";
 
@@ -35,6 +37,14 @@ chrome.runtime.sendMessage({}, (response) => {
 				{
 					regex: /https:\/\/bank\.hackclub\.com\/.*/,
 					func: bankEventCopyName,
+				},
+				{
+					regex: /https:\/\/bank\.hackclub\.com\/events.*[?&]name=.*/,
+					func: bankProjectSearch,
+				},
+				{
+					regex: /https:\/\/.*expensify\.com\/report.*/,
+					func: expensifyReport,
 				},
 			];
 
