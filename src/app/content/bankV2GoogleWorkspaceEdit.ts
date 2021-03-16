@@ -3,25 +3,57 @@ import { getKey } from '../helpers/g-verify-auth';
 
 async function bankGoogleWorkspaceEdit() {
 	processDomain();
-
-	// listen for changes to the domain field
-	// TODO: watch out for too many requests/max out api limit
-	document.querySelector('#g_suite_domain').addEventListener('input', (e) => {
-		processDomain();
-	});
 }
 
 async function processDomain() {
+	const detailsTable = document.querySelector('table');
+
 	// get domain of current Google Worksapce
-	const domain = (<HTMLInputElement>document.querySelector('#g_suite_domain'))
-		.value;
+	var details = {
+		name: '',
+		domain: '',
+		key: '',
+		ouId: '',
+		ouPath: '',
+	};
+	for (let item of detailsTable.querySelectorAll('tr')) {
+		const pairs = <Array<HTMLTableCellElement>>(
+			Array.prototype.slice.call(item.querySelectorAll('td'))
+		);
+
+		// first td
+		const name = pairs[0].innerText;
+		const data = pairs[1].innerText;
+		switch (name.trim()) {
+			case 'Event:': {
+				details.name = data;
+				break;
+			}
+			case 'Domain:': {
+				details.domain = data;
+				break;
+			}
+			case 'Verificaton Key:': {
+				details.key = data;
+				break;
+			}
+			case 'OU ID:': {
+				details.ouId = data;
+				break;
+			}
+			case 'OU Path:': {
+				details.ouPath = data;
+				break;
+			}
+		}
+	}
 
 	// get verification key from g-verify
-	if (domain !== '') {
+	if (details.domain !== '') {
 		displayToken('LOADING...');
-		var domainKey = (await getToken(domain)).token;
+		var domainKey = (await getToken(details.domain.trim())).token;
 		displayToken(domainKey);
-		console.log(domain, domainKey);
+		console.log(details.domain, domainKey);
 	} else {
 		displayToken('NO DOMAIN');
 	}
@@ -48,11 +80,7 @@ async function displayToken(domainKey) {
 	const preexisting = document.querySelector(`#generatedDomainKeyWrapper`);
 	preexisting && preexisting.remove();
 
-	const form = document.querySelector('form');
-	form.parentElement.insertBefore(
-		displayElement.firstElementChild,
-		form.nextElementSibling
-	);
+	document.body.appendChild(displayElement.firstElementChild);
 }
 
 async function getToken(domain) {
