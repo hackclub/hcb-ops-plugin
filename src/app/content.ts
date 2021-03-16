@@ -1,27 +1,28 @@
-import bankEventCopyName from "./content/bankEventCopyName";
-import bankGoogleWorkspace from "./content/bankV1GoogleWorkspace";
-import bankGoogleWorkspaceEdit from "./content/bankV1GoogleWorkspaceEdit";
-import bankProjectSearch from "./content/bankProjectSearch";
-import bankTransactionEdit from "./content/bankV1TransactionEdit";
-import expensifyReport from "./content/expensifyReport";
-import svbBillPayAddIndivHaveBank from "./content/svbBillPayAddIndivHaveBank";
-import svbBillPayAddPayeeActivationCode from "./content/svbBillPayAddPayeeActivationCode";
+import bankEventCopyName from './content/bankEventCopyName';
+import bankV1GoogleWorkspace from './content/bankV1GoogleWorkspace';
+import bankV1GoogleWorkspaceEdit from './content/bankV1GoogleWorkspaceEdit';
+import bankProjectSearch from './content/bankProjectSearch';
+import bankV1TransactionEdit from './content/bankV1TransactionEdit';
+import expensifyReport from './content/expensifyReport';
+import svbBillPayAddIndivHaveBank from './content/svbBillPayAddIndivHaveBank';
+import svbBillPayAddPayeeActivationCode from './content/svbBillPayAddPayeeActivationCode';
+import bankV2GoogleWorkspaceEdit from './content/bankV2GoogleWorkspaceEdit';
 
 function checkPath() {
 	chrome.runtime.sendMessage({}, (response) => {
 		var checkReady = setInterval(() => {
-			if (document.readyState === "complete") {
+			if (document.readyState === 'complete') {
 				clearInterval(checkReady);
 
 				// match path to content function
 				const matches = [
 					{
 						regex: /https:\/\/bank\.hackclub\.com\/g_suites$/,
-						func: bankGoogleWorkspace,
+						func: bankV1GoogleWorkspace,
 					},
 					{
 						regex: /https:\/\/bank\.hackclub\.com\/.*\/g_suites\/.*\/edit/,
-						func: bankGoogleWorkspaceEdit,
+						func: bankV1GoogleWorkspaceEdit,
 					},
 					{
 						regex: /https:\/\/www\.businessbillpay-e\.com\/V2\/Payees\/AddIndividual\.aspx.*/,
@@ -33,7 +34,7 @@ function checkPath() {
 					},
 					{
 						regex: /https:\/\/bank\.hackclub\.com\/transactions\/.*\/edit/,
-						func: bankTransactionEdit,
+						func: bankV1TransactionEdit,
 					},
 					{
 						regex: /https:\/\/bank\.hackclub\.com\/.*/,
@@ -47,6 +48,10 @@ function checkPath() {
 						regex: /https:\/\/.*expensify\.com\/report.*/,
 						func: expensifyReport,
 					},
+					{
+						regex: /https:\/\/bank\.hackclub\.com\/admin\/.*\/google_workspace_process/,
+						func: bankV2GoogleWorkspaceEdit,
+					},
 				];
 
 				const url = window.location.href;
@@ -55,8 +60,8 @@ function checkPath() {
 					if (item.regex instanceof RegExp) {
 						if (url.match(item.regex)) {
 							matchesSpecificContent = true;
-							console.log("Hack Club Bank Ops Plugin is running on this page!");
-							console.log("Running function:", item.func.name + "()");
+							console.log('Hack Club Bank Ops Plugin is running on this page!');
+							console.log('Running function:', item.func.name + '()');
 
 							// inject common css/scripts into page
 							injectCommon();
@@ -78,7 +83,7 @@ function checkPath() {
 								}
 								matchesSpecificContent = true;
 								console.log(
-									"Hack Club Bank Ops Plugin is running on this page!"
+									'Hack Club Bank Ops Plugin is running on this page!'
 								);
 
 								// inject common css/scripts into page
@@ -94,7 +99,7 @@ function checkPath() {
 				}
 				if (!matchesSpecificContent) {
 					console.log(
-						"Hack Club Bank Ops Plugin is installed, but not active on this page."
+						'Hack Club Bank Ops Plugin is installed, but not active on this page.'
 					);
 				}
 			}
@@ -105,7 +110,7 @@ checkPath();
 
 // check path on SPA page change
 let url = window.location.href;
-["click", "popstate", "onload"].forEach((evt) =>
+['click', 'popstate', 'onload'].forEach((evt) =>
 	window.addEventListener(
 		evt,
 		function () {
@@ -121,7 +126,7 @@ let url = window.location.href;
 );
 
 function injectCommon() {
-	const customCss = document.createElement("style");
+	const customCss = document.createElement('style');
 	customCss.innerText = `
 		.hcb-plugin-tools {
 			padding: 0.5rem;

@@ -2,7 +2,7 @@ function expensifyReport() {
 	linkBankProjectSearch();
 }
 function linkBankProjectSearch() {
-	const injectScript = document.createElement("script");
+	const injectScript = document.createElement('script');
 	injectScript.innerText = `
 	function inject() {
 		let observer = new MutationObserver((mutations) => {

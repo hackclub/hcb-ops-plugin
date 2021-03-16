@@ -1,9 +1,9 @@
-const DEFAULT_PAY_FROM_ACCOUNT = "Fiscal Sponsorship 2 - New";
+const DEFAULT_PAY_FROM_ACCOUNT = 'Fiscal Sponsorship 2 - New';
 
 function svbPayBillAddIndivHaveBank() {
 	// Click on the "I have the bank account information" switch
 	const iHaveBankInfoSwitch = <HTMLInputElement>(
-		document.querySelector("#ctl00_DefaultContent_rdoIHaveTheirInfoForm")
+		document.querySelector('#ctl00_DefaultContent_rdoIHaveTheirInfoForm')
 	);
 	if (!iHaveBankInfoSwitch.checked) {
 		iHaveBankInfoSwitch.click();
@@ -13,24 +13,24 @@ function svbPayBillAddIndivHaveBank() {
 	Array.prototype.slice
 		.call(
 			document.querySelectorAll(
-				"#ctl00_DefaultContent_IHaveTheirInfoForm_ddDefaultPayFrom > option"
+				'#ctl00_DefaultContent_IHaveTheirInfoForm_ddDefaultPayFrom > option'
 			)
 		)
 		.forEach((option) => {
 			if (option.innerText === DEFAULT_PAY_FROM_ACCOUNT) {
-				option.selected = "true";
+				option.selected = 'true';
 			}
 		});
 
 	// Allow paste to confirm account/routing number input
 	const accountConfirmInput = document.querySelector(
-		"#ctl00_DefaultContent_IHaveTheirInfoForm_txtConfirmAccountNumber"
+		'#ctl00_DefaultContent_IHaveTheirInfoForm_txtConfirmAccountNumber'
 	);
 	const routingConfirmInput = document.querySelector(
-		"#ctl00_DefaultContent_IHaveTheirInfoForm_txtConfirmRoutingNumber"
+		'#ctl00_DefaultContent_IHaveTheirInfoForm_txtConfirmRoutingNumber'
 	);
 	window.addEventListener(
-		"paste",
+		'paste',
 		function (event) {
 			if (
 				(<HTMLElement>event.target).isSameNode(accountConfirmInput) ||
