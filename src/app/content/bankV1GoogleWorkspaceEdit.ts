@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { getKey } from '../helpers/g-verify-auth';
 
-async function bankGoogleWorkspaceEdit() {
+async function bankV1GoogleWorkspaceEdit() {
 	processDomain();
 
 	// listen for changes to the domain field
@@ -65,4 +65,4 @@ async function getToken(domain) {
 	).data;
 }
 
-export default bankGoogleWorkspaceEdit;
+export default bankV1GoogleWorkspaceEdit;

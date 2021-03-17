@@ -1,14 +1,41 @@
-function bankV1TransactionEdit() {
-	const originalName = getOriginalName();
+import axios from 'axios';
 
-	quickAssignButtons();
-	expensifyReport(originalName);
+function bankV2TransactionEdit() {
+	const rawName = getRawName();
+
+	// quickAssignButtons();
+	if (rawName !== null) {
+		expensifyReport(rawName);
+	}
 }
 
-function getOriginalName(): String {
-	return (<HTMLPreElement>(
-		document.querySelector('.container > pre.bg-smoke.mt0')
-	)).innerText;
+function getRawName() {
+	const paragraphs = <Array<HTMLParagraphElement>>(
+		Array.prototype.slice.call(document.querySelectorAll('p'))
+	);
+
+	var rawPlaidTransaction: Array<Node>;
+	paragraphs.forEach((p) => {
+		if (p.innerText === 'RawPlaidTransaction') {
+			rawPlaidTransaction = Array.prototype.slice.call(
+				p.nextElementSibling.firstElementChild.childNodes
+			);
+		}
+	});
+	if (typeof rawPlaidTransaction === 'undefined') return null;
+
+	var nameElement: Node;
+	rawPlaidTransaction.forEach((e) => {
+		if (e.nodeType === 3 && e.nodeValue.substring(1).trim() === '"name"') {
+			nameElement = e;
+		}
+	});
+	if (typeof nameElement === 'undefined') return null;
+
+	const nameValue = (<HTMLElement>nameElement.nextSibling.nextSibling)
+		.innerHTML;
+
+	return nameValue;
 }
 
 function quickAssignButtons() {
@@ -67,11 +94,12 @@ function quickAssignButtons() {
 function expensifyReport(originalName: String) {
 	const regexMatch = originalName.match(/Expensify R(\d*) The Hack Foundation/);
 
-	if (regexMatch) {
-		console.log('This is an Expensify Report with id ' + regexMatch[1]);
-		const expensifyReportUrl = `https://www.expensify.com/report?param={%22pageReportID%22:%22${regexMatch[1]}%22,%22keepCollection%22:true}`;
+	if (regexMatch === null) return;
 
-		var content = `
+	console.log('This is an Expensify Report with id ' + regexMatch[1]);
+	const expensifyReportUrl = `https://www.expensify.com/report?param={%22pageReportID%22:%22${regexMatch[1]}%22,%22keepCollection%22:true}`;
+
+	var content = `
 		<div class="hcb-plugin-tools mt3">
 			<p>Visit
 				<a href="${expensifyReportUrl}" target="_blank">Expensify Report (${regexMatch[1]})</a>.
@@ -79,12 +107,14 @@ function expensifyReport(originalName: String) {
 		</div>
 		`;
 
-		var displayElement = document.createElement('div');
-		displayElement.innerHTML = content;
+	var displayElement = document.createElement('div');
+	displayElement.innerHTML = content;
 
-		const container = document.querySelector('.container > h1').parentElement;
-		container.appendChild(displayElement.firstElementChild);
-	}
+	const txDetailsTable = document.querySelector('table');
+	txDetailsTable.parentElement.insertBefore(
+		displayElement.firstElementChild,
+		txDetailsTable.nextSibling
+	);
 }
 
-export default bankV1TransactionEdit;
+export default bankV2TransactionEdit;

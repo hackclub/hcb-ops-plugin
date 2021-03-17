@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { getKey } from '../helpers/g-verify-auth';
 
-function bankGoogleWorkspace() {
+function bankV1GoogleWorkspace() {
 	const events = processTable();
 	console.log(events);
 
@@ -164,4 +164,4 @@ function setRowStatus(event, status, message = undefined) {
 	statusInjectLoc.appendChild(tempDiv.firstElementChild);
 }
 
-export default bankGoogleWorkspace;
+export default bankV1GoogleWorkspace;
