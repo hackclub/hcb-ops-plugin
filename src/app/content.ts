@@ -8,6 +8,7 @@ import svbBillPayAddIndivHaveBank from './content/svbBillPayAddIndivHaveBank';
 import svbBillPayAddPayeeActivationCode from './content/svbBillPayAddPayeeActivationCode';
 import bankV2GoogleWorkspaceEdit from './content/bankV2GoogleWorkspaceEdit';
 import bankV2TransactionEdit from './content/bankV2TransactionEdit';
+import bankV2GoogleWorkspace from './content/bankV2GoogleWorkspace';
 
 function checkPath() {
 	chrome.runtime.sendMessage({}, (response) => {
@@ -56,6 +57,10 @@ function checkPath() {
 					{
 						regex: /https:\/\/bank\.hackclub\.com\/admin\/.*\/transaction/,
 						func: bankV2TransactionEdit,
+					},
+					{
+						regex: /https:\/\/bank\.hackclub\.com\/admin\/google_workspaces/,
+						func: bankV2GoogleWorkspace,
 					},
 				];
 
