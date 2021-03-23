@@ -1,11 +1,14 @@
 import axios from 'axios';
 import { getKey } from '../helpers/g-verify-auth';
+import options from '../helpers/options';
 
 function bankV1GoogleWorkspace() {
 	const events = processTable();
 	console.log(events);
 
-	verifyAll(events);
+	options.bankAutoVerifyGoogleWorkspace.get().then((value) => {
+		value && verifyAll(events);
+	});
 }
 
 const tableRowAttributeName = 'data-hcb-plugin-row-num';
