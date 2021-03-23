@@ -17,7 +17,7 @@ Anything surrounded by a dark orange dotted line is added to the page by this pl
 
 ### SVB
 
-- Automatically select "I have the bank account information" switch when creating a new individual payee
+- Automatically select "I have the bank account information" when creating a new individual payee
 - Automatically request activation code to be sent to mobile when verifying a payee
 
 ### Hack Club Bank
