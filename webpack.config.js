@@ -1,4 +1,5 @@
 const path = require('path');
+const FileManagerPlugin = require('filemanager-webpack-plugin');
 
 module.exports = {
 	mode: 'development',
@@ -25,4 +26,14 @@ module.exports = {
 			{ test: /\.css$/, use: ['style-loader', 'css-loader'] },
 		],
 	},
+
+	plugins: [
+		new FileManagerPlugin({
+			events: {
+				onEnd: {
+					archive: [{ source: './dist', destination: 'hcb_ops_plugin.zip' }],
+				},
+			},
+		}),
+	],
 };
