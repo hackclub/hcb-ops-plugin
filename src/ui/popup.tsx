@@ -117,7 +117,7 @@ class Popup extends React.Component<
 					></input>
 				</div>
 				<hr />
-				<p>Hows it's going? 🦕</p>
+				<p>How's it going? 🦕</p>
 			</div>
 		);
 	}
