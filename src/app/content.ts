@@ -38,10 +38,10 @@ function checkPath() {
 						regex: /https:\/\/bank\.hackclub\.com\/transactions\/.*\/edit/,
 						func: bankV1TransactionEdit,
 					},
-					{
-						regex: /https:\/\/bank\.hackclub\.com\/.*/,
-						func: bankEventCopyName,
-					},
+					// {
+					// 	regex: /https:\/\/bank\.hackclub\.com\/.*/,
+					// 	func: bankEventCopyName,
+					// },
 					{
 						regex: /https:\/\/bank\.hackclub\.com\/events.*[?&]name=.*/,
 						func: bankProjectSearch,

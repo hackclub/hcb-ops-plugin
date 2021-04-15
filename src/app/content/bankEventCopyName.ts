@@ -1,3 +1,6 @@
+/**
+ * DEPRECATED. Added into the Bank repo.
+ */
 function bankEventCopyName() {
 	if (onEventPage()) {
 		const nameElement = <HTMLHeadElement>(
