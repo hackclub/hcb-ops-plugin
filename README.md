@@ -22,7 +22,7 @@ Anything surrounded by a dark orange dotted line is added to the page by this pl
 
 ### Hack Club Bank
 
-- Add a button for copying the event's name (visible on all event specific pages)
+- [Feature moved into the Bank repo]. Add a button for copying the event's name (visible on all event specific pages)
   ![image](https://user-images.githubusercontent.com/20099646/112122844-ea1eec00-8b7d-11eb-9dc0-95a87d3ad796.png)
 
 - Easily grab the Google Webmaster Domain Verification key for Google Workspace (v1 and v2).<br />
