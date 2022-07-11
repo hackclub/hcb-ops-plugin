@@ -21,7 +21,7 @@ function linkBankProjectSearch() {
 				displayElem.innerHTML = \`
 					<p>
 						Search for
-						<a href='https://bank.hackclub.com/events?name=\` + policyName + \`' target='_blank'>\` + policyName + \`</a>
+						<a href='https://bank.hackclub.com/admin/events?q=\` + policyName + \`' target='_blank'>\` + policyName + \`</a>
 						on Hack Club Bank.
 					</p>
 				\`;
