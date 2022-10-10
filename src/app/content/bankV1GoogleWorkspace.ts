@@ -96,7 +96,7 @@ function verifyAll(events) {
 			try {
 				setRowStatus(event, 'loading');
 				const res = await axios.get(
-					'https://g-verify.herokuapp.com/verify/' + event.domain,
+					'https://gverify.bank.engineering/verify/' + event.domain,
 					typeof authKey !== 'undefined' && authKey !== ''
 						? {
 								headers: {

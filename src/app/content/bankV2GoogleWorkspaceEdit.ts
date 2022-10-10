@@ -85,7 +85,7 @@ async function displayToken(domainKey) {
 
 async function getToken(domain) {
 	return (
-		await axios.get('https://g-verify.herokuapp.com/token/' + domain, {
+		await axios.get('https://gverify.bank.engineering/token/' + domain, {
 			headers: {
 				authorization: await getKey(),
 			},
