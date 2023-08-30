@@ -1,6 +1,6 @@
-# Hack Club Bank Operations Plugin
+# HCB Operations Plugin
 
-This Chrome extension helps speed up Hack Club Bank's operations work. It modifies various pages on Hack Club Bank and other 3rd party websites (Expensify, SVB, etc.) to simplify workflows.
+This Chrome extension helps speed up HCB's operations work. It modifies various pages on HCB and other 3rd party websites (Expensify, SVB, etc.) to simplify workflows.
 
 Anything surrounded by a dark orange dotted line is added to the page by this plugin. Example:
 
@@ -12,7 +12,7 @@ Anything surrounded by a dark orange dotted line is added to the page by this pl
 
 ### Expensify
 
-- Link to Expensify policy's respective project on Hack Club Bank
+- Link to Expensify policy's respective project on HCB
   ![image](https://user-images.githubusercontent.com/20099646/112122184-403f5f80-8b7d-11eb-88a6-6aeabc5f8512.png)
 
 ### SVB
@@ -20,7 +20,7 @@ Anything surrounded by a dark orange dotted line is added to the page by this pl
 - Automatically select "I have the bank account information" when creating a new individual payee
 - Automatically request activation code to be sent to mobile when verifying a payee
 
-### Hack Club Bank
+### HCB
 
 - [Feature moved into the Bank repo]. Add a button for copying the event's name (visible on all event specific pages)
   ![image](https://user-images.githubusercontent.com/20099646/112122844-ea1eec00-8b7d-11eb-9dc0-95a87d3ad796.png)
