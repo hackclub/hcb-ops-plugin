@@ -69,19 +69,19 @@ function verifyAll(events) {
 			switch (err) {
 				case '401':
 					alert(
-						'Hack Club Bank Operations Plugin: UH OH!\nG-Verify Authentication Key not found\n\nPlease visit the plugin settings to set your authentication key.'
+						'HCB Operations Plugin: UH OH!\nG-Verify Authentication Key not found\n\nPlease visit the plugin settings to set your authentication key.'
 					);
 					break;
 
 				case '403':
 					alert(
-						'Hack Club Bank Operations Plugin: UH OH!\nInvalid G-Verify Authentication Key\n\nPlease visit the plugin settings to double check your authentication key. Contact Gary for help!'
+						'HCB Operations Plugin: UH OH!\nInvalid G-Verify Authentication Key\n\nPlease visit the plugin settings to double check your authentication key. Contact Gary for help!'
 					);
 					break;
 
 				default:
 					alert(
-						`Hack Club Bank Operations Plugin: UH OH!\nG-Verify Error\n\n${JSON.stringify(
+						`HCB Operations Plugin: UH OH!\nG-Verify Error\n\n${JSON.stringify(
 							verifyErrors[err]
 						)}`
 					);

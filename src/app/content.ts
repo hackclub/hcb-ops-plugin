@@ -19,11 +19,11 @@ function checkPath() {
 				// match path to content function
 				const matches = [
 					{
-						regex: /https:\/\/bank\.hackclub\.com\/g_suites$/,
+						regex: /https:\/\/hcb\.hackclub\.com\/g_suites$/,
 						func: bankV1GoogleWorkspace,
 					},
 					{
-						regex: /https:\/\/bank\.hackclub\.com\/.*\/g_suites\/.*\/edit/,
+						regex: /https:\/\/hcb\.hackclub\.com\/.*\/g_suites\/.*\/edit/,
 						func: bankV1GoogleWorkspaceEdit,
 					},
 					{
@@ -35,15 +35,15 @@ function checkPath() {
 						func: svbBillPayAddPayeeActivationCode,
 					},
 					{
-						regex: /https:\/\/bank\.hackclub\.com\/transactions\/.*\/edit/,
+						regex: /https:\/\/hcb\.hackclub\.com\/transactions\/.*\/edit/,
 						func: bankV1TransactionEdit,
 					},
 					// {
-					// 	regex: /https:\/\/bank\.hackclub\.com\/.*/,
+					// 	regex: /https:\/\/hcb\.hackclub\.com\/.*/,
 					// 	func: bankEventCopyName,
 					// },
 					{
-						regex: /https:\/\/bank\.hackclub\.com\/events.*[?&]name=.*/,
+						regex: /https:\/\/hcb\.hackclub\.com\/events.*[?&]name=.*/,
 						func: bankProjectSearch,
 					},
 					{
@@ -51,15 +51,15 @@ function checkPath() {
 						func: expensifyReport,
 					},
 					{
-						regex: /https:\/\/bank\.hackclub\.com\/admin\/.*\/google_workspace_process/,
+						regex: /https:\/\/hcb\.hackclub\.com\/admin\/.*\/google_workspace_process/,
 						func: bankV2GoogleWorkspaceEdit,
 					},
 					{
-						regex: /https:\/\/bank\.hackclub\.com\/admin\/.*\/transaction/,
+						regex: /https:\/\/hcb\.hackclub\.com\/admin\/.*\/transaction/,
 						func: bankV2TransactionEdit,
 					},
 					{
-						regex: /https:\/\/bank\.hackclub\.com\/admin\/google_workspaces/,
+						regex: /https:\/\/hcb\.hackclub\.com\/admin\/google_workspaces/,
 						func: bankV2GoogleWorkspace,
 					},
 				];
@@ -70,7 +70,7 @@ function checkPath() {
 					if (item.regex instanceof RegExp) {
 						if (url.match(item.regex)) {
 							matchesSpecificContent = true;
-							console.log('Hack Club Bank Ops Plugin is running on this page!');
+							console.log('HCB Ops Plugin is running on this page!');
 							console.log('Running function:', item.func.name + '()');
 
 							// inject common css/scripts into page
@@ -93,7 +93,7 @@ function checkPath() {
 								}
 								matchesSpecificContent = true;
 								console.log(
-									'Hack Club Bank Ops Plugin is running on this page!'
+									'HCB Ops Plugin is running on this page!'
 								);
 
 								// inject common css/scripts into page
@@ -109,7 +109,7 @@ function checkPath() {
 				}
 				if (!matchesSpecificContent) {
 					console.log(
-						'Hack Club Bank Ops Plugin is installed, but not active on this page.'
+						'HCB Ops Plugin is installed, but not active on this page.'
 					);
 				}
 			}

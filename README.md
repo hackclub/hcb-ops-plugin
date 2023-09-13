@@ -22,7 +22,7 @@ Anything surrounded by a dark orange dotted line is added to the page by this pl
 
 ### HCB
 
-- [Feature moved into the Bank repo]. Add a button for copying the event's name (visible on all event specific pages)
+- [Feature moved into the HCB repo]. Add a button for copying the event's name (visible on all event specific pages)
   ![image](https://user-images.githubusercontent.com/20099646/112122844-ea1eec00-8b7d-11eb-9dc0-95a87d3ad796.png)
 
 - Easily grab the Google Webmaster Domain Verification key for Google Workspace (v1 and v2).<br />
@@ -39,8 +39,8 @@ Anything surrounded by a dark orange dotted line is added to the page by this pl
 ## Get started (Development)
 
 1. Clone this repository
-   `git clone https://github.com/hackclub/bank-ops-plugin`
-2. `cd bank-ops-plugin`
+   `git clone https://github.com/hackclub/hcb-ops-plugin`
+2. `cd hcb-ops-plugin`
 3. `npm install`
 4. `npx webpack -w`
 5. The unpacked Chrome extension will be compiled into `dist/`. You can load it into Chrome by enabling developer mode on the "Extensions" page, hitting "Load unpacked", and selecting the `dist/` folder. After an edit, you will need to reload the chrome extension by clicking the icon next to the extension's on/off switch.

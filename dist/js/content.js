@@ -2169,11 +2169,11 @@ function checkPath() {
                 // match path to content function
                 const matches = [
                     {
-                        regex: /https:\/\/bank\.hackclub\.com\/g_suites$/,
+                        regex: /https:\/\/hcb\.hackclub\.com\/g_suites$/,
                         func: bankV1GoogleWorkspace_1.default,
                     },
                     {
-                        regex: /https:\/\/bank\.hackclub\.com\/.*\/g_suites\/.*\/edit/,
+                        regex: /https:\/\/hcb\.hackclub\.com\/.*\/g_suites\/.*\/edit/,
                         func: bankV1GoogleWorkspaceEdit_1.default,
                     },
                     {
@@ -2185,15 +2185,15 @@ function checkPath() {
                         func: svbBillPayAddPayeeActivationCode_1.default,
                     },
                     {
-                        regex: /https:\/\/bank\.hackclub\.com\/transactions\/.*\/edit/,
+                        regex: /https:\/\/hcb\.hackclub\.com\/transactions\/.*\/edit/,
                         func: bankV1TransactionEdit_1.default,
                     },
                     // {
-                    // 	regex: /https:\/\/bank\.hackclub\.com\/.*/,
+                    // 	regex: /https:\/\/hcb\.hackclub\.com\/.*/,
                     // 	func: bankEventCopyName,
                     // },
                     {
-                        regex: /https:\/\/bank\.hackclub\.com\/events.*[?&]name=.*/,
+                        regex: /https:\/\/hcb\.hackclub\.com\/events.*[?&]name=.*/,
                         func: bankProjectSearch_1.default,
                     },
                     {
@@ -2201,15 +2201,15 @@ function checkPath() {
                         func: expensifyReport_1.default,
                     },
                     {
-                        regex: /https:\/\/bank\.hackclub\.com\/admin\/.*\/google_workspace_process/,
+                        regex: /https:\/\/hcb\.hackclub\.com\/admin\/.*\/google_workspace_process/,
                         func: bankV2GoogleWorkspaceEdit_1.default,
                     },
                     {
-                        regex: /https:\/\/bank\.hackclub\.com\/admin\/.*\/transaction/,
+                        regex: /https:\/\/hcb\.hackclub\.com\/admin\/.*\/transaction/,
                         func: bankV2TransactionEdit_1.default,
                     },
                     {
-                        regex: /https:\/\/bank\.hackclub\.com\/admin\/google_workspaces/,
+                        regex: /https:\/\/hcb\.hackclub\.com\/admin\/google_workspaces/,
                         func: bankV2GoogleWorkspace_1.default,
                     },
                 ];
@@ -2219,7 +2219,7 @@ function checkPath() {
                     if (item.regex instanceof RegExp) {
                         if (url.match(item.regex)) {
                             matchesSpecificContent = true;
-                            console.log('Hack Club Bank Ops Plugin is running on this page!');
+                            console.log('HCB Ops Plugin is running on this page!');
                             console.log('Running function:', item.func.name + '()');
                             // inject common css/scripts into page
                             injectCommon();
@@ -2236,7 +2236,7 @@ function checkPath() {
                                     return;
                                 }
                                 matchesSpecificContent = true;
-                                console.log('Hack Club Bank Ops Plugin is running on this page!');
+                                console.log('HCB Ops Plugin is running on this page!');
                                 // inject common css/scripts into page
                                 injectCommon();
                                 // run content specific function
@@ -2247,7 +2247,7 @@ function checkPath() {
                     }
                 }
                 if (!matchesSpecificContent) {
-                    console.log('Hack Club Bank Ops Plugin is installed, but not active on this page.');
+                    console.log('HCB Ops Plugin is installed, but not active on this page.');
                 }
             }
         });
@@ -2388,13 +2388,13 @@ function verifyAll(events) {
         Object.keys(verifyErrors).forEach((err) => {
             switch (err) {
                 case '401':
-                    alert('Hack Club Bank Operations Plugin: UH OH!\nG-Verify Authentication Key not found\n\nPlease visit the plugin settings to set your authentication key.');
+                    alert('HCB Operations Plugin: UH OH!\nG-Verify Authentication Key not found\n\nPlease visit the plugin settings to set your authentication key.');
                     break;
                 case '403':
-                    alert('Hack Club Bank Operations Plugin: UH OH!\nInvalid G-Verify Authentication Key\n\nPlease visit the plugin settings to double check your authentication key. Contact Gary for help!');
+                    alert('HCB Operations Plugin: UH OH!\nInvalid G-Verify Authentication Key\n\nPlease visit the plugin settings to double check your authentication key. Contact Gary for help!');
                     break;
                 default:
-                    alert(`Hack Club Bank Operations Plugin: UH OH!\nG-Verify Error\n\n${JSON.stringify(verifyErrors[err])}`);
+                    alert(`HCB Operations Plugin: UH OH!\nG-Verify Error\n\n${JSON.stringify(verifyErrors[err])}`);
                     break;
             }
         });
@@ -2575,7 +2575,7 @@ function quickAssignButtons() {
             eventId: 183,
         },
         {
-            name: 'Bank',
+            name: 'HCB',
             eventId: 636,
         },
         {
@@ -2722,13 +2722,13 @@ function verifyAll(events) {
         Object.keys(verifyErrors).forEach((err) => {
             switch (err) {
                 case '401':
-                    alert('Hack Club Bank Operations Plugin: UH OH!\nG-Verify Authentication Key not found\n\nPlease visit the plugin settings to set your authentication key.');
+                    alert('HCB Operations Plugin: UH OH!\nG-Verify Authentication Key not found\n\nPlease visit the plugin settings to set your authentication key.');
                     break;
                 case '403':
-                    alert('Hack Club Bank Operations Plugin: UH OH!\nInvalid G-Verify Authentication Key\n\nPlease visit the plugin settings to double check your authentication key. Contact Gary for help!');
+                    alert('HCB Operations Plugin: UH OH!\nInvalid G-Verify Authentication Key\n\nPlease visit the plugin settings to double check your authentication key. Contact Gary for help!');
                     break;
                 default:
-                    alert(`Hack Club Bank Operations Plugin: UH OH!\nG-Verify Error\n\n${JSON.stringify(verifyErrors[err])}`);
+                    alert(`HCB Operations Plugin: UH OH!\nG-Verify Error\n\n${JSON.stringify(verifyErrors[err])}`);
                     break;
             }
         });
@@ -2962,7 +2962,7 @@ function quickAssignButtons() {
             eventId: 183,
         },
         {
-            name: 'Bank',
+            name: 'HCB',
             eventId: 636,
         },
         {
@@ -3059,8 +3059,8 @@ function linkBankProjectSearch() {
 				displayElem.innerHTML = \`
 					<p>
 						Search for
-						<a href='https://bank.hackclub.com/admin/events?q=\` + policyName + \`' target='_blank'>\` + policyName + \`</a>
-						on Hack Club Bank.
+						<a href='https://hcb.hackclub.com/admin/events?q=\` + policyName + \`' target='_blank'>\` + policyName + \`</a>
+						on HCB.
 					</p>
 				\`;
 				displayLoc.appendChild(displayElem);
