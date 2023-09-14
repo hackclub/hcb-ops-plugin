@@ -18,7 +18,7 @@ function quickAssignButtons() {
 			eventId: 183,
 		},
 		{
-			name: 'Bank',
+			name: 'HCB',
 			eventId: 636,
 		},
 		{

@@ -28732,7 +28732,7 @@ class Popup extends React.Component {
             React.createElement("h1", { className: 'heading' }, "HCB Ops Plugin"),
             React.createElement("h2", null, "Options"),
             React.createElement("div", null,
-                React.createElement("h3", null, "Bank: Auto Verify Google Workspace"),
+                React.createElement("h3", null, "HCB: Auto Verify Google Workspace"),
                 React.createElement("label", { style: { paddingRight: '0.5em' } }, "Automatically attempt to verify domains when you visit the Google Workspace page:"),
                 React.createElement("input", { onChange: (e) => {
                         const value = e.target.checked;

@@ -1,5 +1,5 @@
 /**
- * DEPRECATED. Added into the Bank repo.
+ * DEPRECATED. Added into the HCB repo.
  */
 function bankEventCopyName() {
 	if (onEventPage()) {
